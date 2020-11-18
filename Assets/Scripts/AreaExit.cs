@@ -7,9 +7,11 @@ public class AreaExit : MonoBehaviour
 {
     public string areaToLoad;
     public string areaTransitionName;
+
+    public AreaEntrance entrance;
     void Start()
     {
-        
+        entrance.transitionName = areaTransitionName;
     }
 
     void Update()
