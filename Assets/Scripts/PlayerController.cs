@@ -5,20 +5,41 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rigidBody;
-    // Start is called before the first frame update
+    public float moveSpeed;
+    public Animator myAnim;
+
+    public static PlayerController instance;  // reference to the script on Player-- only 1 allowed!
+
+    public string areaTransitionName;
+
+
     void Start()
     {
-
+        // prevents character duplication
+        if(instance == null)
+        {
+            instance = this;  // instance is THIS script
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        float horizonalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
+        rigidBody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * moveSpeed; // Vector 2 takes 2 values, the x and the y
 
-        rigidBody.velocity = new Vector2(horizontalInput, verticalInput); // Vector 2 takes 2 values, the x and the y
+        myAnim.SetFloat("moveX", rigidBody.velocity.x);
+        myAnim.SetFloat("moveY", rigidBody.velocity.y);
 
-        
+        if(Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 ||  Input.GetAxisRaw("Vertical") == -1)
+        {
+            myAnim.SetFloat("lastMoveX", Input.GetAxisRaw("Horizontal"));
+            myAnim.SetFloat("lastMoveY", Input.GetAxisRaw("Vertical"));
+        }
+
     }
 }
