@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6641854399508321199}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.6393132, y: 7.371648, z: -67.2632}
+  m_LocalPosition: {x: -1.6393132, y: 7.371648, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6641854398951282767}
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   areaToLoad: Town
   areaTransitionName: Countryside-1
+  entrance: {fileID: 0}
 --- !u!61 &6641854399508321196
 BoxCollider2D:
   m_ObjectHideFlags: 0
