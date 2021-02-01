@@ -13,13 +13,10 @@ public class AreaExit : MonoBehaviour
 
     public AreaEntrance entrance;
 
-    private UIFade uiFade;
 
     void Start()
     {
         entrance.transitionName = areaTransitionName;
-
-        uiFade = GameObject.Find("UI_Canvas").GetComponent<UIFade>();
     }
 
     void Update()
@@ -40,7 +37,7 @@ public class AreaExit : MonoBehaviour
         if (other.tag == "Player")
         {
             shouldLoadAfterFade = true;
-            uiFade.FadeToBlack();
+            UIFade.instance.FadeToBlack();
             PlayerController.instance.areaTransitionName = areaTransitionName;   // Do not ever need to reference the player
         }
     }
